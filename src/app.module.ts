@@ -5,6 +5,8 @@ import { AppService } from './app.service';
 import { join } from 'path';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { MongooseModule } from '@nestjs/mongoose';
+import { UserModule } from './user/user.module';
+
 
 @Module({
   imports: [
@@ -37,7 +39,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 					};
         }
       }
-    })
+    }),
+    UserModule
 
   ],
   controllers: [AppController],
