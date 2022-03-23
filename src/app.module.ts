@@ -6,6 +6,7 @@ import { join } from 'path';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 
 
 @Module({
@@ -40,8 +41,8 @@ import { UserModule } from './user/user.module';
         }
       }
     }),
-    UserModule
-
+    UserModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],

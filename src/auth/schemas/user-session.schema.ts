@@ -8,7 +8,7 @@ export type UserSessionDocument = UserSession & Document;
 @Schema({
     timestamps: true
 })
-class UserSession {
+export class UserSession {
     @Prop({
         type: mongoose.Schema.Types.ObjectId,
         ref: User.name,

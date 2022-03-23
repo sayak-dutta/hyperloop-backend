@@ -1,7 +1,35 @@
 import { Injectable } from "@nestjs/common";
+import { InjectModel } from "@nestjs/mongoose";
+import { UserDocument, User } from "./user.schema";
+import { Model } from 'mongoose';
 
 
 @Injectable()
 export class UserService {
+    constructor(
+        @InjectModel(User.name) private userModel:Model<UserDocument>
+    ){}
+
+    async findOneById(id:string){
+        return this.userModel.findById(id).exec();
+    }
+
+    async list(){
+        return this.userModel.find().lean().exec();
+    }
+
+    async create(userDocument: any):Promise<any>{
+        return new this.userModel(userDocument).save();
+    }
+
+    async update(id:string, userDocument:any):Promise<any>{
+        return this.userModel.findByIdAndUpdate(id, userDocument, {
+            returnDocument: 'after'
+        }).exec();
+    }
+
+    async remove(id:string):Promise<any>{
+        return this.userModel.findByIdAndRemove(id).exec();
+    }
 
 }
