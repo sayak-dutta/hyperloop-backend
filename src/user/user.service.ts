@@ -31,5 +31,4 @@ export class UserService {
     async remove(id:string):Promise<any>{
         return this.userModel.findByIdAndRemove(id).exec();
     }
-
 }
