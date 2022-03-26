@@ -1,7 +1,9 @@
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
 import mongoose from "mongoose";
+import { OTPController, VerifyOTPController } from "./otp.controller";
 import { OTP, OTPSchema } from "./otp.schema";
+import { OTPService } from "./otp.service";
 
 
 @Module({
@@ -13,8 +15,8 @@ import { OTP, OTPSchema } from "./otp.schema";
             }
         ])
     ],
-    providers: [],
-    controllers: [],
-    exports: []
+    providers: [OTPService],
+    controllers: [OTPController, VerifyOTPController],
+    exports: [OTPService]
 })
 export class OTPModule {};

@@ -7,6 +7,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { OTPModule } from './otp/otp.module';
 
 
 @Module({
@@ -42,7 +43,8 @@ import { AuthModule } from './auth/auth.module';
       }
     }),
     UserModule,
-    AuthModule
+    AuthModule,
+    OTPModule
   ],
   controllers: [AppController],
   providers: [AppService],

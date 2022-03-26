@@ -8,7 +8,7 @@ export type OTPDocument = OTP & Document;
 })
 export class OTP{
     @Prop()
-    otp: string;
+    otp: number;
 
     @Prop()
     phone_no: string;
