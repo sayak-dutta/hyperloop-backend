@@ -8,7 +8,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { OTPModule } from './otp/otp.module';
-
+import { SponsorModule } from './sponsor/sponsor.module';
 
 @Module({
   imports: [
@@ -44,7 +44,8 @@ import { OTPModule } from './otp/otp.module';
     }),
     UserModule,
     AuthModule,
-    OTPModule
+    OTPModule,
+    SponsorModule,
   ],
   controllers: [AppController],
   providers: [AppService],

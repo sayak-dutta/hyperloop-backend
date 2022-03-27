@@ -49,7 +49,6 @@ export class OTPService {
                 'status': 'fail'
             }
         }
-        console.log(otp);
     }
 
     // async update(mobile_no: string, otpDocument:any): Promise<any>{
