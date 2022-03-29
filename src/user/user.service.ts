@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { UserDocument, User } from "./user.schema";
 import { Model } from 'mongoose';
-
+import { hash } from "bcrypt";
 
 @Injectable()
 export class UserService {
@@ -19,6 +19,7 @@ export class UserService {
     }
 
     async create(userDocument: any):Promise<any>{
+        userDocument.password = await hash(userDocument.password, 10);
         return new this.userModel(userDocument).save();
     }
 
@@ -32,3 +33,4 @@ export class UserService {
         return this.userModel.findByIdAndRemove(id).exec();
     }
 }
+
