@@ -22,8 +22,14 @@ export class UserController {
         try{
             const user = await this.userService.create(userDocument);
             return user.toJSON();
+
         }catch(e){
-            throw new BadRequestException();
+            if(e.code == 11000){
+                throw new BadRequestException(
+                    'User with the same unique identifying details already exists'
+                );
+            }
+            throw e;
         }
     }
 
