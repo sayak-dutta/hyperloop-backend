@@ -9,6 +9,8 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { OTPModule } from './otp/otp.module';
 import { SponsorModule } from './sponsor/sponsor.module';
+import { BoardModule } from './board/board.module';
+import PlayerModule from './player/player.module';
 
 @Module({
   imports: [
@@ -19,7 +21,7 @@ import { SponsorModule } from './sponsor/sponsor.module';
     ServeStaticModule.forRootAsync({
 			useFactory: () => [
 				{
-					rootPath: join(__dirname, '..', '..', 'ez-autocare-frontend', 'build'),
+					rootPath: join(__dirname, '..', '..', 'hyperloop-frontend', 'build'),
 					exclude: [`/${process.env.GLOBAL_PREFIX}*`],
 					serveStaticOptions: {
 						dotfiles: 'deny',
@@ -46,6 +48,8 @@ import { SponsorModule } from './sponsor/sponsor.module';
     AuthModule,
     OTPModule,
     SponsorModule,
+    BoardModule,
+    PlayerModule
   ],
   controllers: [AppController],
   providers: [AppService],
