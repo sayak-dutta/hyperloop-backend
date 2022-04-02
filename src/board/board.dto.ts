@@ -16,6 +16,9 @@ export class BoardCreateDTO {
     @IsNotEmpty()
     boardName: string;
 
+    @IsString()
+    @IsNotEmpty()
+    boardType: string;
 }
 
 export class BoardUpdateDTO extends PartialType(BoardCreateDTO){};

@@ -31,6 +31,9 @@ export class Player {
 
     @Prop()
     playerNo: number;
+
+    @Prop()
+    referCount: number;
 }
 
 export const PlayerSchema = SchemaFactory.createForClass(Player);

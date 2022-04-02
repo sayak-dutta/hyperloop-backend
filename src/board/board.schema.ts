@@ -12,6 +12,9 @@ export class Board{
 
     @Prop({})
     boardName: string;
+
+    @Prop()
+    boardType: string;
 }
 
 export const BoardSchema = SchemaFactory.createForClass(Board);

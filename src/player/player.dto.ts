@@ -20,7 +20,12 @@ export class PlayerCreateDto{
     parent: string;
 
     @IsNumber()
+    @IsNotEmpty()
     playerNo: number;
+
+    @IsNumber()
+    @IsNotEmpty()
+    referCount: number;
 }
 
 export class PlayerUpdateDTO extends PartialType(PlayerCreateDto){};
