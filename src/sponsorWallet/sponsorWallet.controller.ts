@@ -32,6 +32,9 @@ export class sponsorWalletController{
     @Patch(':id')
     async update(@Param() {id}, @Body() sponsorWalletDocument: SponsorWalletUpdateDTO){
         const sponsorWallet = await this.sponsorWalletService.update(id, sponsorWalletDocument);
+        if(!sponsorWallet){
+            throw new NotFoundException();
+        }
         return sponsorWallet;
     }
 
@@ -56,7 +59,7 @@ export class sponsorWalletsController{
         if(!sponsorWallets){
             throw new NotFoundException();
         }
-        return sponsorWalletsController;
+        return sponsorWallets;
     }
 }
 
@@ -112,5 +115,9 @@ export class sponsorWalletTransactionsController{
     @Get()
     async findAll(){
         const sponsorTransactionWallets = await this.sponsorWalletTransactionService.findAll();
+        if(!sponsorTransactionWallets){
+            throw new NotFoundException();
+        }
+        return sponsorTransactionWallets;
     }
 }

@@ -11,6 +11,7 @@ import { OTPModule } from './otp/otp.module';
 import { SponsorModule } from './sponsor/sponsor.module';
 import { BoardModule } from './board/board.module';
 import PlayerModule from './player/player.module';
+import { SponsorWalletModule } from './sponsorWallet/sponsorWallet.module';
 
 @Module({
   imports: [
@@ -49,7 +50,8 @@ import PlayerModule from './player/player.module';
     OTPModule,
     SponsorModule,
     BoardModule,
-    PlayerModule
+    PlayerModule,
+    SponsorWalletModule
   ],
   controllers: [AppController],
   providers: [AppService],
