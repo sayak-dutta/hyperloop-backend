@@ -4,7 +4,7 @@ import { IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 
 export class OTPCreateDto {
     @IsNumber()
-    @IsOptional()
+    @IsNotEmpty()
     otp: number;
 
     @IsString()

@@ -32,5 +32,10 @@ export class UserService {
     async remove(id:string):Promise<any>{
         return this.userModel.findByIdAndRemove(id).exec();
     }
+
+    async verifyUser(userDocument: any): Promise<any>{
+        return await this.userModel.findOne({username:userDocument.username}).exec();
+    }
+
 }
 

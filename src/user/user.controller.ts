@@ -64,3 +64,18 @@ export class UsersController {
         const users = await this.userService.list();
     }
 }
+
+
+@Controller('user-verify')
+export class VerifyUser {
+    constructor(private readonly userService: UserService){}
+
+    @Post()
+    async verifyUser(@Body() userDocument:any ){
+        const user = await this.userService.verifyUser(userDocument);
+        if(!user){
+            throw new NotFoundException();
+        }
+        return user;
+    }
+}
