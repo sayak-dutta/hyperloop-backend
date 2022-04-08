@@ -75,6 +75,7 @@ export class VerifyUser {
 
   @Post()
   async verifyUser(@Body() userDocument: any) {
+    console.log('hi');
     const user = await this.userService.verifyUser(userDocument);
     if (!user) {
       throw new NotFoundException();
