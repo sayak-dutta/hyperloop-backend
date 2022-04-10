@@ -8,42 +8,41 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { OTPModule } from './otp/otp.module';
-import { SponsorModule } from './sponsor/sponsor.module';
 import { BoardModule } from './board/board.module';
 import PlayerModule from './player/player.module';
 import { SponsorWalletModule } from './sponsorWallet/sponsorWallet.module';
+import SponsorModule from './sponsor/sponsor.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal:true,
+      isGlobal: true,
     }),
 
     ServeStaticModule.forRootAsync({
-			useFactory: () => [
-				{
-					rootPath: join(__dirname, '..', '..', 'hyperloop-frontend', 'build'),
-					exclude: [`/${process.env.GLOBAL_PREFIX}*`],
-					serveStaticOptions: {
-						dotfiles: 'deny',
-					},
-				},
-			],
-		}),
+      useFactory: () => [
+        {
+          rootPath: join(__dirname, '..', '..', 'hyperloop-frontend', 'build'),
+          exclude: [`/${process.env.GLOBAL_PREFIX}*`],
+          serveStaticOptions: {
+            dotfiles: 'deny',
+          },
+        },
+      ],
+    }),
 
     MongooseModule.forRootAsync({
       useFactory: () => {
-        if(process.env.MONGODB_USERNAME && process.env.MONGODB_PASSWORD){
+        if (process.env.MONGODB_USERNAME && process.env.MONGODB_PASSWORD) {
           return {
-						uri: `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_HOSTNAME}:${process.env.MONGODB_PORT}/${process.env.MONGODB_DATABASE}`,
-					};
-        }
-        else{
+            uri: `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_HOSTNAME}:${process.env.MONGODB_PORT}/${process.env.MONGODB_DATABASE}`,
+          };
+        } else {
           return {
-						uri: `mongodb://${process.env.MONGODB_HOSTNAME}:${process.env.MONGODB_PORT}/${process.env.MONGODB_DATABASE}`,
-					};
+            uri: `mongodb://${process.env.MONGODB_HOSTNAME}:${process.env.MONGODB_PORT}/${process.env.MONGODB_DATABASE}`,
+          };
         }
-      }
+      },
     }),
     UserModule,
     AuthModule,
@@ -51,7 +50,7 @@ import { SponsorWalletModule } from './sponsorWallet/sponsorWallet.module';
     SponsorModule,
     BoardModule,
     PlayerModule,
-    SponsorWalletModule
+    SponsorWalletModule,
   ],
   controllers: [AppController],
   providers: [AppService],

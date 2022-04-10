@@ -1,69 +1,70 @@
-import { BadRequestException, Body, Controller, NotFoundException } from "@nestjs/common";
-import { PlayerService } from "./player.service";
-import { Delete, Get, Param, Patch, Post } from "@nestjs/common";
-import { PlayerCreateDto, PlayerUpdateDTO } from "./player.dto";
-
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  NotFoundException,
+} from '@nestjs/common';
+import { PlayerService } from './player.service';
+import { Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { PlayerCreateDto, PlayerUpdateDTO } from './player.dto';
 
 @Controller('player')
 export class PlayerController {
-    constructor(private readonly playerService: PlayerService){};
+  constructor(private readonly playerService: PlayerService) {}
 
-    @Get(':id')
-    async findOne(@Param() { id }){
-        const player = await this.playerService.findOneById(id);
-        if(!player){
-            throw new NotFoundException();
-        }
-        return player;
+  @Get(':id')
+  async findOne(@Param() { id }) {
+    const player = await this.playerService.findOneById(id);
+    if (!player) {
+      throw new NotFoundException();
     }
+    return player;
+  }
 
-    @Post()
-    async create(@Body() playerDocument:PlayerCreateDto){
-        try{
-            const player = await (await this.playerService.create(playerDocument)).save();
-            return player.toJSON();
-        }catch(e){
-            if(e.code == 11000){
-                throw new BadRequestException();
-            }
-            throw e;
-        }
+  @Post()
+  async create(@Body() playerDocument: PlayerCreateDto) {
+    try {
+      const player = await (
+        await this.playerService.create(playerDocument)
+      ).save();
+      return player.toJSON();
+    } catch (e) {
+      if (e.code == 11000) {
+        throw new BadRequestException();
+      }
+      throw e;
     }
+  }
 
-    @Patch(':id')
-    async update(
-        @Param() { id }, 
-        @Body() playerDocument:PlayerUpdateDTO
-    ){
-        const player = await this.playerService.update(id, playerDocument);
-        if(!player){
-            throw new NotFoundException();
-        }
-        return player;           
+  @Patch(':id')
+  async update(@Param() { id }, @Body() playerDocument: PlayerUpdateDTO) {
+    const player = await this.playerService.update(id, playerDocument);
+    if (!player) {
+      throw new NotFoundException();
     }
+    return player;
+  }
 
-    @Delete(':id')
-    async delete(@Param() { id }){
-        const player = await this.playerService.remove(id);
-        if(!player){
-            throw new NotFoundException();
-        }
-        return player;
+  @Delete(':id')
+  async delete(@Param() { id }) {
+    const player = await this.playerService.remove(id);
+    if (!player) {
+      throw new NotFoundException();
     }
-
+    return player;
+  }
 }
 
-
 @Controller('players')
-export class PlayerControllers {
-    constructor(private readonly playerService: PlayerService){};
+export class PlayersController {
+  constructor(private readonly playerService: PlayerService) {}
 
-    @Get()
-    async findAll(){
-        const players = await this.playerService.findAll();
-        if(!players){
-            throw new NotFoundException();
-        }
-        return players;
+  @Get()
+  async findAll() {
+    const players = await this.playerService.findAll();
+    if (!players) {
+      throw new NotFoundException();
     }
+    return players;
+  }
 }
