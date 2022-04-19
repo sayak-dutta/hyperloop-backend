@@ -11,13 +11,13 @@ export class ServiceSettingsAdmin {
 
    
     @Prop()
-    featured_image: string;
+    featuredImage: string;
 
     @Prop()
-    short_description: string;
+    shortDescription: string;
 
     @Prop()
-    long_description: string;
+    longDescription: string;
 }
 
 export const ServiceSettingsAdminSchema = SchemaFactory.createForClass(ServiceSettingsAdmin);
