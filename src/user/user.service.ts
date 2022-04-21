@@ -13,7 +13,8 @@ export class UserService {
   }
 
   async list() {
-    return this.userModel.find().lean().exec();
+    let users= this.userModel.find().lean().exec();
+    return users;
   }
 
   async create(userDocument: any): Promise<any> {
