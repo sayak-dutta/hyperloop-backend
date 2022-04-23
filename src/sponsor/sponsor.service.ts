@@ -6,6 +6,7 @@ export class SponsorService {
   constructor(
     @InjectModel(Sponsor.name) private sponsorModel: Model<SponsorDocument>,
   ) {}
+  
   async findOneById(id: string) {
     return await this.sponsorModel.findById(id);
   }
