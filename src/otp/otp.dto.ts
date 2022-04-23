@@ -1,19 +1,18 @@
-import { PartialType } from "@nestjs/mapped-types";
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
-
+import { PartialType } from '@nestjs/mapped-types';
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class OTPCreateDto {
-    @IsNumber()
-    @IsNotEmpty()
-    otp: number;
+  @IsNumber()
+  @IsOptional()
+  otp: number;
 
-    @IsString()
-    @IsNotEmpty()
-    phone_no: string;
+  @IsString()
+  @IsNotEmpty()
+  phone_no: string;
 
-    @IsNumber()
-    @IsOptional()
-    count: number;
+  @IsNumber()
+  @IsOptional()
+  count: number;
 }
 
-export class OTPUpdateDTO extends PartialType(OTPCreateDto) {};
+export class OTPUpdateDTO extends PartialType(OTPCreateDto) {}

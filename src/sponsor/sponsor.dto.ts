@@ -1,5 +1,5 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { IsMongoId, IsNotEmpty, IsString } from 'class-validator';
+import { IsMongoId, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class SponsorCreateDTO {
   @IsMongoId()
@@ -11,6 +11,7 @@ export class SponsorCreateDTO {
   sponsor: string;
 
   @IsString()
+  @IsOptional()
   type: string;
 
   @IsString()

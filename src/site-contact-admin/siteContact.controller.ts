@@ -4,7 +4,7 @@ import {
   Controller,
   NotFoundException,
 } from '@nestjs/common';
-import { SiteContactService } from './SiteContact.service';
+import { SiteContactService } from './siteContact.service';
 import { Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { SiteContactCreateDto, SiteContactUpdateDTO } from './siteContact.dto';
 
@@ -37,8 +37,14 @@ export class SiteContactController {
   }
 
   @Patch(':id')
-  async update(@Param() { id }, @Body() siteContactDocument: SiteContactUpdateDTO) {
-    const siteContact = await this.siteContactService.update(id, siteContactDocument);
+  async update(
+    @Param() { id },
+    @Body() siteContactDocument: SiteContactUpdateDTO,
+  ) {
+    const siteContact = await this.siteContactService.update(
+      id,
+      siteContactDocument,
+    );
     if (!siteContact) {
       throw new NotFoundException();
     }

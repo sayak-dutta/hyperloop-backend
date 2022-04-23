@@ -37,8 +37,14 @@ export class EditProfileController {
   }
 
   @Patch(':id')
-  async update(@Param() { id }, @Body() editProfileDocument: EditProfileUpdateDTO) {
-    const editProfile = await this.editProfileService.update(id, editProfileDocument);
+  async update(
+    @Param() { id },
+    @Body() editProfileDocument: EditProfileUpdateDTO,
+  ) {
+    const editProfile = await this.editProfileService.update(
+      id,
+      editProfileDocument,
+    );
     if (!editProfile) {
       throw new NotFoundException();
     }

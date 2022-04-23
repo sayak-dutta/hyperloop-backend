@@ -1,23 +1,22 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Document, SchemaTypes } from 'mongoose';
-
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
 
 export type ServiceSettingsAdminDocument = ServiceSettingsAdmin & Document;
 
 @Schema()
 export class ServiceSettingsAdmin {
-    @Prop()
-    icon: string;
+  @Prop()
+  icon: string;
 
-   
-    @Prop()
-    featuredImage: string;
+  @Prop()
+  featuredImage: string;
 
-    @Prop()
-    shortDescription: string;
+  @Prop()
+  shortDescription: string;
 
-    @Prop()
-    longDescription: string;
+  @Prop()
+  longDescription: string;
 }
 
-export const ServiceSettingsAdminSchema = SchemaFactory.createForClass(ServiceSettingsAdmin);
+export const ServiceSettingsAdminSchema =
+  SchemaFactory.createForClass(ServiceSettingsAdmin);

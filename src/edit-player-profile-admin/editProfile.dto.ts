@@ -3,6 +3,10 @@ import { IsMongoId, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class EditProfileCreateDto {
   @IsMongoId()
+  @IsString()
+  player: string;
+
+  @IsString()
   @IsNotEmpty()
   playerName: string;
 
@@ -10,16 +14,13 @@ export class EditProfileCreateDto {
   @IsNotEmpty()
   playerPhoneNo: number;
 
-
   @IsNumber()
   @IsNotEmpty()
   playerMobileNo: number;
 
-  @IsMongoId()
+  @IsString()
   @IsNotEmpty()
   playerEmail: string;
-
-  
 }
 
 export class EditProfileUpdateDTO extends PartialType(EditProfileCreateDto) {}

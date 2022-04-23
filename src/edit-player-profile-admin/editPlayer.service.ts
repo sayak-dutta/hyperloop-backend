@@ -4,7 +4,8 @@ import { Model } from 'mongoose';
 
 export class EditProfileService {
   constructor(
-    @InjectModel(EditProfile.name) private editProfileModel: Model<EditProfileDocument>,
+    @InjectModel(EditProfile.name)
+    private editProfileModel: Model<EditProfileDocument>,
   ) {}
 
   async findOneById(id: string) {
@@ -16,7 +17,7 @@ export class EditProfileService {
   }
 
   async create(EditProfileDocument: any): Promise<any> {
-    return new this.editProfileModel(editProfileDocument).save();
+    return new this.editProfileModel(EditProfileDocument).save();
   }
 
   async update(id: string, editProfileDocument: any): Promise<any> {

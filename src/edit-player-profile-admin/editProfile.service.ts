@@ -4,7 +4,8 @@ import { Model } from 'mongoose';
 
 export class EditProfileService {
   constructor(
-    @InjectModel(EditProfile.name) private editProfileModel: Model<EditProfileDocument>,
+    @InjectModel(EditProfile.name)
+    private editProfileModel: Model<EditProfileDocument>,
   ) {}
 
   async findOneById(id: string) {

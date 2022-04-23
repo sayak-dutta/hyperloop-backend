@@ -4,7 +4,8 @@ import { Model } from 'mongoose';
 
 export class TestimonialService {
   constructor(
-    @InjectModel(Testimonial.name) private testimonialModel: Model<TestimonialDocument>,
+    @InjectModel(Testimonial.name)
+    private testimonialModel: Model<TestimonialDocument>,
   ) {}
 
   async findOneById(id: string) {

@@ -6,15 +6,21 @@ import {
 } from '@nestjs/common';
 import { ServiceSettingsAdminService } from './serviceSettingsAdmin.service';
 import { Delete, Get, Param, Patch, Post } from '@nestjs/common';
-import { ServiceSettingsAdminCreateDto, ServiceSettingsAdminUpdateDTO } from './serviceSettingsAdmin.dto';
+import {
+  ServiceSettingsAdminCreateDto,
+  ServiceSettingsAdminUpdateDTO,
+} from './serviceSettingsAdmin.dto';
 
 @Controller('serviceSettingsAdmin')
 export class ServiceSettingsAdminController {
-  constructor(private readonly serviceSettingsAdminService: ServiceSettingsAdminService) {}
+  constructor(
+    private readonly serviceSettingsAdminService: ServiceSettingsAdminService,
+  ) {}
 
   @Get(':id')
   async findOne(@Param() { id }) {
-    const serviceSettingsAdmin = await this.serviceSettingsAdminService.findOneById(id);
+    const serviceSettingsAdmin =
+      await this.serviceSettingsAdminService.findOneById(id);
     if (!serviceSettingsAdmin) {
       throw new NotFoundException();
     }
@@ -22,10 +28,14 @@ export class ServiceSettingsAdminController {
   }
 
   @Post()
-  async create(@Body() serviceSettingsAdminDocument: ServiceSettingsAdminCreateDto) {
+  async create(
+    @Body() serviceSettingsAdminDocument: ServiceSettingsAdminCreateDto,
+  ) {
     try {
       const serviceSettingsAdmin = await (
-        await this.serviceSettingsAdminService.create(serviceSettingsAdminDocument)
+        await this.serviceSettingsAdminService.create(
+          serviceSettingsAdminDocument,
+        )
       ).save();
       return serviceSettingsAdmin.toJSON();
     } catch (e) {
@@ -37,8 +47,14 @@ export class ServiceSettingsAdminController {
   }
 
   @Patch(':id')
-  async update(@Param() { id }, @Body() serviceSettingsAdminDocument: ServiceSettingsAdminUpdateDTO) {
-    const serviceSettingsAdmin = await this.serviceSettingsAdminService.update(id, serviceSettingsAdminDocument);
+  async update(
+    @Param() { id },
+    @Body() serviceSettingsAdminDocument: ServiceSettingsAdminUpdateDTO,
+  ) {
+    const serviceSettingsAdmin = await this.serviceSettingsAdminService.update(
+      id,
+      serviceSettingsAdminDocument,
+    );
     if (!serviceSettingsAdmin) {
       throw new NotFoundException();
     }
@@ -47,7 +63,9 @@ export class ServiceSettingsAdminController {
 
   @Delete(':id')
   async delete(@Param() { id }) {
-    const serviceSettingsAdmin = await this.serviceSettingsAdminService.remove(id);
+    const serviceSettingsAdmin = await this.serviceSettingsAdminService.remove(
+      id,
+    );
     if (!serviceSettingsAdmin) {
       throw new NotFoundException();
     }
@@ -56,15 +74,18 @@ export class ServiceSettingsAdminController {
 }
 
 @Controller('serviceSettingsAdmin2')
-export class serviceSettingsAdmin2Controller {
-  constructor(private readonly serviceSettingsAdminService: ServiceSettingsAdminService) {}
+export class ServiceSettingsAdminControllers {
+  constructor(
+    private readonly serviceSettingsAdminService: ServiceSettingsAdminService,
+  ) {}
 
   @Get()
   async findAll() {
-    const serviceSettingsAdmin2 = await this.serviceSettingsAdminService.findAll();
-    if (!serviceSettingsAdmin2) {
+    const serviceSettingsAdmin =
+      await this.serviceSettingsAdminService.findAll();
+    if (!serviceSettingsAdmin) {
       throw new NotFoundException();
     }
-    return serviceSettingsAdmin2;
+    return serviceSettingsAdmin;
   }
 }

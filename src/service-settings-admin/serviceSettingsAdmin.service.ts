@@ -1,10 +1,14 @@
 import { InjectModel } from '@nestjs/mongoose';
-import { ServiceSettingsAdmin, ServiceSettingsAdminDocument } from './ServiceSettingsAdmin.schema';
+import {
+  ServiceSettingsAdmin,
+  ServiceSettingsAdminDocument,
+} from './serviceSettingsAdmin.schema';
 import { Model } from 'mongoose';
 
 export class ServiceSettingsAdminService {
   constructor(
-    @InjectModel(ServiceSettingsAdmin.name) private ServiceSettingsAdminModel: Model<ServiceSettingsAdminDocument>,
+    @InjectModel(ServiceSettingsAdmin.name)
+    private ServiceSettingsAdminModel: Model<ServiceSettingsAdminDocument>,
   ) {}
 
   async findOneById(id: string) {
@@ -16,13 +20,19 @@ export class ServiceSettingsAdminService {
   }
 
   async create(ServiceSettingsAdminDocument: any): Promise<any> {
-    return new this.ServiceSettingsAdminModel(ServiceSettingsAdminDocument).save();
+    return new this.ServiceSettingsAdminModel(
+      ServiceSettingsAdminDocument,
+    ).save();
   }
 
   async update(id: string, ServiceSettingsAdminDocument: any): Promise<any> {
-    return this.ServiceSettingsAdminModel.findByIdAndUpdate(id, ServiceSettingsAdminDocument, {
-      returnDocument: 'after',
-    });
+    return this.ServiceSettingsAdminModel.findByIdAndUpdate(
+      id,
+      ServiceSettingsAdminDocument,
+      {
+        returnDocument: 'after',
+      },
+    );
   }
 
   async remove(id: string) {

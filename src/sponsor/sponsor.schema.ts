@@ -10,7 +10,7 @@ export class Sponsor {
     ref: User.name,
     type: SchemaTypes.ObjectId,
   })
-  user_id: string;
+  user: string;
 
   @Prop({
     ref: User.name,

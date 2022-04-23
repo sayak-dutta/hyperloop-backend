@@ -1,26 +1,29 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { User } from "src/user/user.schema";
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { User } from 'src/user/user.schema';
 import { Document, SchemaTypes } from 'mongoose';
-import { Board } from "src/board/board.schema";
-
+import { Board } from 'src/board/board.schema';
 
 export type EditProfileDocument = EditProfile & Document;
 
 @Schema()
 export class EditProfile {
-  
-    @Prop()
-    playerName: string;
+  @Prop({
+    ref: User.name,
+    type: SchemaTypes.ObjectId,
+  })
+  player: string;
 
-    @Prop()
-    playerPhoneNo: number;
+  @Prop()
+  playerName: string;
 
-    @Prop()
-    playerMobileNo: number;
+  @Prop()
+  playerPhoneNo: number;
 
+  @Prop()
+  playerMobileNo: number;
 
-    @Prop()
-    playerEmail: string;
+  @Prop()
+  playerEmail: string;
 }
 
 export const EditProfileSchema = SchemaFactory.createForClass(EditProfile);

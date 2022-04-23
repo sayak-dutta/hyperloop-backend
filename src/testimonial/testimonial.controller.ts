@@ -6,11 +6,11 @@ import {
 } from '@nestjs/common';
 import { TestimonialService } from './testimonial.service';
 import { Delete, Get, Param, Patch, Post } from '@nestjs/common';
-import { TestimonialCreateDto, TestimonialUpdateDTO } from './testimonial.dto';
+import { TestimonialCreateDto, TestimonialUpdateDto } from './testimonial.dto';
 
 @Controller('testimonial')
 export class TestimonialController {
-  constructor(private readonly playerService: TestimonialService) {}
+  constructor(private readonly testimonialService: TestimonialService) {}
 
   @Get(':id')
   async findOne(@Param() { id }) {
@@ -37,8 +37,14 @@ export class TestimonialController {
   }
 
   @Patch(':id')
-  async update(@Param() { id }, @Body() testimonialDocument: TestimonialUpdateDTO) {
-    const testimonial = await this.testimonialService.update(id, testimonialDocument);
+  async update(
+    @Param() { id },
+    @Body() testimonialDocument: TestimonialUpdateDto,
+  ) {
+    const testimonial = await this.testimonialService.update(
+      id,
+      testimonialDocument,
+    );
     if (!testimonial) {
       throw new NotFoundException();
     }
