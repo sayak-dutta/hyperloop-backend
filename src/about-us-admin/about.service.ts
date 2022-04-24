@@ -8,7 +8,9 @@ export class AboutService {
   ) {}
 
   async findOneById(id: string) {
-    return await this.aboutModel.findById(id);
+    let about = await this.aboutModel.findById(id);
+    console.log(about);
+    return about
   }
 
   async findAll() {
