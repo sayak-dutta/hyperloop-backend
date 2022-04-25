@@ -13,6 +13,8 @@ import PlayerModule from './player/player.module';
 import { SponsorWalletModule } from './sponsorWallet/sponsorWallet.module';
 import SponsorModule from './sponsor/sponsor.module';
 import NewsModule from './news-update-admin/newsUpdateAdmin.module';
+import AboutModule from './about-us-admin/about.module';
+
 
 @Module({
   imports: [
@@ -53,6 +55,7 @@ import NewsModule from './news-update-admin/newsUpdateAdmin.module';
     PlayerModule,
     SponsorWalletModule,
     NewsModule
+    AboutModule
   ],
   controllers: [AppController],
   providers: [AppService],

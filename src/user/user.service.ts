@@ -7,7 +7,8 @@ import { hash } from 'bcrypt';
 @Injectable()
 export class UserService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
-
+     
+  
   async findOneById(id: string) {
     return this.userModel.findById(id).exec();
   }
