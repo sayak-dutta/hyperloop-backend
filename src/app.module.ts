@@ -12,6 +12,7 @@ import { BoardModule } from './board/board.module';
 import PlayerModule from './player/player.module';
 import { SponsorWalletModule } from './sponsorWallet/sponsorWallet.module';
 import SponsorModule from './sponsor/sponsor.module';
+import NewsModule from './news-update-admin/newsUpdateAdmin.module';
 
 @Module({
   imports: [
@@ -51,6 +52,7 @@ import SponsorModule from './sponsor/sponsor.module';
     BoardModule,
     PlayerModule,
     SponsorWalletModule,
+    NewsModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -53,7 +53,7 @@ export class NewsController {
   }
 }
 
-@Controller('news')
+@Controller('news-all')
 export class NewsControllers {
   constructor(private readonly NewsService: NewsService) {}
 

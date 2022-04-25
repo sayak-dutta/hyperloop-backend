@@ -17,7 +17,7 @@ export class OTPService {
   }
 
   async create(otpDocument: OTPCreateDto): Promise<any> {
-    otpDocument.otp = Math.floor(1000 + Math.random() * 9000);
+    otpDocument.otp = Math.floor(100000 + Math.random() * 900000);
     console.log(otpDocument);
     if (
       (await this.otpModel.find({ phone_no: otpDocument.phone_no })).length > 0
