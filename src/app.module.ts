@@ -13,7 +13,7 @@ import PlayerModule from './player/player.module';
 import { SponsorWalletModule } from './sponsorWallet/sponsorWallet.module';
 import SponsorModule from './sponsor/sponsor.module';
 import NewsModule from './news-update-admin/newsUpdateAdmin.module';
-import Testimonial from './testimonial/testimonial.module';
+import AboutModule from './about-us-admin/about.module';
 
 @Module({
   imports: [
@@ -54,7 +54,7 @@ import Testimonial from './testimonial/testimonial.module';
     PlayerModule,
     SponsorWalletModule,
     NewsModule,
-    Testimonial,
+    AboutModule,
   ],
   controllers: [AppController],
   providers: [AppService],

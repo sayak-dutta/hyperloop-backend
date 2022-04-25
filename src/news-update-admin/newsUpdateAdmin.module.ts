@@ -14,7 +14,7 @@ import { NewsService } from './newsUpdateAdmin.service';
     ]),
   ],
   providers: [NewsService],
-  controllers: [NewsController, NewsController],
+  controllers: [NewsController, NewsControllers],
   exports: [NewsService],
 })
 export default class NewsModule {}
