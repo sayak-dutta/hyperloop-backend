@@ -17,5 +17,4 @@ export class Testimonial {
   @Prop()
   customerReview: string;
 }
-
 export const TestimonialSchema = SchemaFactory.createForClass(Testimonial);
