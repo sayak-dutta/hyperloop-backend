@@ -15,7 +15,6 @@ import SponsorModule from './sponsor/sponsor.module';
 import NewsModule from './news-update-admin/newsUpdateAdmin.module';
 import AboutModule from './about-us-admin/about.module';
 
-
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -54,8 +53,8 @@ import AboutModule from './about-us-admin/about.module';
     BoardModule,
     PlayerModule,
     SponsorWalletModule,
-    NewsModule
-    AboutModule
+    NewsModule,
+    AboutModule,
   ],
   controllers: [AppController],
   providers: [AppService],
