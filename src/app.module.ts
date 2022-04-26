@@ -14,6 +14,8 @@ import { SponsorWalletModule } from './sponsorWallet/sponsorWallet.module';
 import SponsorModule from './sponsor/sponsor.module';
 import NewsModule from './news-update-admin/newsUpdateAdmin.module';
 import AboutModule from './about-us-admin/about.module';
+import TestimonialModule from './testimonial/testimonial.module';
+import EventModule from './event-update-admin/event.module'
 
 @Module({
   imports: [
@@ -55,6 +57,8 @@ import AboutModule from './about-us-admin/about.module';
     SponsorWalletModule,
     NewsModule,
     AboutModule,
+    TestimonialModule,
+    EventModule
   ],
   controllers: [AppController],
   providers: [AppService],
