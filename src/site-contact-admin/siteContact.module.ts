@@ -1,6 +1,9 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { SiteContactController, SiteContactsController } from './siteContact.controller';
+import {
+  SiteContactController,
+  SiteContactsController,
+} from './siteContact.controller';
 import { SiteContact, SiteContactSchema } from './siteContact.schema';
 import { SiteContactService } from './siteContact.service';
 
