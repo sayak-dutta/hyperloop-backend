@@ -4,15 +4,15 @@ import { Board } from 'src/board/board.schema';
 import { User } from 'src/user/user.schema';
 
 
-export type NewsDocument = News & Document;
+export type EventDocument = Event & Document;
 
 @Schema()
-export class News {
+export class Event {
   @Prop()
-  image: string;
+  eventImage: string;
 
   @Prop()
-  description: string;
+  eventDescription: string;
 }
 
-export const NewsSchema = SchemaFactory.createForClass(News);
+export const EventSchema = SchemaFactory.createForClass(Event);

@@ -15,6 +15,8 @@ import SponsorModule from './sponsor/sponsor.module';
 import NewsModule from './news-update-admin/newsUpdateAdmin.module';
 import AboutModule from './about-us-admin/about.module';
 import ServiceSettingsAdmin from './service-settings-admin/serviceSettingsAdmin.module';
+import TestimonialModule from './testimonial/testimonial.module';
+import EventModule from './event-update-admin/event.module';
 
 @Module({
   imports: [
@@ -57,6 +59,8 @@ import ServiceSettingsAdmin from './service-settings-admin/serviceSettingsAdmin.
     NewsModule,
     AboutModule,
     ServiceSettingsAdmin,
+    TestimonialModule,
+    EventModule,
   ],
   controllers: [AppController],
   providers: [AppService],
