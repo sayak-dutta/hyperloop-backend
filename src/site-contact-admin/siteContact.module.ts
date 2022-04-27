@@ -18,6 +18,6 @@ import { SiteContactService } from './siteContact.service';
   ],
   providers: [SiteContactService],
   controllers: [SiteContactController, SiteContactsController],
-  exports: [SiteContact],
+  exports: [SiteContactService],
 })
 export default class SiteContactModule {}

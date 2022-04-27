@@ -24,7 +24,9 @@ export class EventController {
   @Post()
   async create(@Body() eventDocument: EventCreateDto) {
     try {
-      const event = await (await this.eventService.create(eventDocument)).save();
+      const event = await (
+        await this.eventService.create(eventDocument)
+      ).save();
       return event.toJSON();
     } catch (e) {
       if (e.code == 11000) {

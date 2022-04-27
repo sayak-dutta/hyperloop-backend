@@ -1,6 +1,9 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { TestimonialController, TestimonialsController } from './testimonial.controller';
+import {
+  TestimonialController,
+  TestimonialsController,
+} from './testimonial.controller';
 import { Testimonial, TestimonialSchema } from './testimonial.schema';
 import { TestimonialService } from './testimonial.service';
 

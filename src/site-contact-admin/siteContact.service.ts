@@ -4,7 +4,8 @@ import { Model } from 'mongoose';
 
 export class SiteContactService {
   constructor(
-    @InjectModel(SiteContact.name) private siteContactModel: Model<SiteContactDocument>,
+    @InjectModel(SiteContact.name)
+    private siteContactModel: Model<SiteContactDocument>,
   ) {}
 
   async findOneById(id: string) {

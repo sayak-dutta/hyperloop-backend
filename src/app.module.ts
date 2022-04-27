@@ -17,6 +17,8 @@ import AboutModule from './about-us-admin/about.module';
 import ServiceSettingsAdmin from './service-settings-admin/serviceSettingsAdmin.module';
 import TestimonialModule from './testimonial/testimonial.module';
 import EventModule from './event-update-admin/event.module';
+import SiteContactModule from './site-contact-admin/siteContact.module';
+import { MotivatorWalletModule } from './motivatorWallet/motivatorWallet.module';
 
 @Module({
   imports: [
@@ -61,6 +63,8 @@ import EventModule from './event-update-admin/event.module';
     ServiceSettingsAdmin,
     TestimonialModule,
     EventModule,
+    SiteContactModule,
+    MotivatorWalletModule,
   ],
   controllers: [AppController],
   providers: [AppService],
