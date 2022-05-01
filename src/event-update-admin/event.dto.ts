@@ -1,14 +1,20 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { IsMongoId, IsNotEmpty } from 'class-validator';
+import { IsMongoId, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class EventCreateDto {
   @IsMongoId()
   @IsNotEmpty()
   eventImage: string;
 
-  @IsMongoId()
   @IsNotEmpty()
   eventDescription: string;
+
+  @IsNotEmpty()
+  eventDate: string;
+
+  @IsMongoId()
+  @IsNotEmpty()
+  eventHeading: string;
 }
 
 export class EventUpdateDTO extends PartialType(EventCreateDto) {}
