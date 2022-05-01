@@ -6,11 +6,11 @@ export class SiteContactCreateDto {
   @IsNotEmpty()
   phoneNo: number;
 
-  @IsMongoId()
+  @IsString()
   @IsNotEmpty()
   emailId: string;
 
-  @IsMongoId()
+  @IsString()
   @IsNotEmpty()
   officeAddress: string;
 }

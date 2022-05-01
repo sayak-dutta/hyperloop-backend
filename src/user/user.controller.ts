@@ -66,7 +66,7 @@ export class UsersController {
   @Get()
   async findAll() {
     const users = await this.userService.list();
-    if(!users){
+    if (!users) {
       throw new NotFoundException();
     }
     return users;

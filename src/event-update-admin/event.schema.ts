@@ -11,6 +11,12 @@ export class Event {
   eventImage: string;
 
   @Prop()
+  eventDate: string;
+
+  @Prop()
+  eventHeading: string;
+
+  @Prop()
   eventDescription: string;
 }
 
