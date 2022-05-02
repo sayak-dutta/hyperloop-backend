@@ -2,6 +2,7 @@ import { PartialType } from '@nestjs/mapped-types';
 import { IsMongoId, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class EventCreateDto {
+ 
   @IsMongoId()
   @IsNotEmpty()
   eventImage: string;
