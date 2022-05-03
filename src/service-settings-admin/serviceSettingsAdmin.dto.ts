@@ -4,17 +4,15 @@ import { IsMongoId, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 export class ServiceSettingsAdminCreateDto {
 
   @IsNotEmpty()
-  icon: string;
+  serviceIcon: string;
 
  
   @IsNotEmpty()
-  featuredImage: string;
+  serviceHeading: string;
 
   @IsNotEmpty()
-  shortDescription: string;
+  serviceDescription: string;
 
-  @IsNotEmpty()
-  longDescription: string;
 }
 
 export class ServiceSettingsAdminUpdateDTO extends PartialType(
