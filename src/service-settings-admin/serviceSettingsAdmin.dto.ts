@@ -2,21 +2,17 @@ import { PartialType } from '@nestjs/mapped-types';
 import { IsMongoId, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class ServiceSettingsAdminCreateDto {
-  @IsString()
-  @IsNotEmpty()
-  icon: string;
 
-  @IsString()
   @IsNotEmpty()
-  featuredImage: string;
+  serviceIcon: string;
 
-  @IsString()
+ 
   @IsNotEmpty()
-  shortDescription: string;
+  serviceHeading: string;
 
-  @IsString()
   @IsNotEmpty()
-  longDescription: string;
+  serviceDescription: string;
+
 }
 
 export class ServiceSettingsAdminUpdateDTO extends PartialType(

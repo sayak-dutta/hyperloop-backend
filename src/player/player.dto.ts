@@ -6,7 +6,6 @@ export class PlayerCreateDto {
   @IsNotEmpty()
   user: string;
 
-  @IsMongoId()
   @IsNotEmpty()
   board: string;
 
@@ -14,7 +13,6 @@ export class PlayerCreateDto {
   @IsNotEmpty()
   level: number;
 
-  @IsMongoId()
   @IsNotEmpty()
   parent: string;
 

@@ -7,10 +7,7 @@ export type EditProfileDocument = EditProfile & Document;
 
 @Schema()
 export class EditProfile {
-  @Prop({
-    ref: User.name,
-    type: SchemaTypes.ObjectId,
-  })
+  
   player: string;
 
   @Prop()

@@ -6,16 +6,14 @@ export type ServiceSettingsAdminDocument = ServiceSettingsAdmin & Document;
 @Schema()
 export class ServiceSettingsAdmin {
   @Prop()
-  icon: string;
+  serviceIcon: string;
 
   @Prop()
-  featuredImage: string;
+  serviceHeading: string;
 
   @Prop()
-  shortDescription: string;
+  serviceDescription: string;
 
-  @Prop()
-  longDescription: string;
 }
 
 export const ServiceSettingsAdminSchema =

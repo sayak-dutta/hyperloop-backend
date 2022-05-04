@@ -12,6 +12,12 @@ export class News {
   image: string;
 
   @Prop()
+  newsHeading: string;
+
+  @Prop()
+  newsDate: string;
+
+  @Prop()
   description: string;
 }
 

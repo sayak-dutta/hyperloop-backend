@@ -7,6 +7,8 @@ export type EventDocument = Event & Document;
 
 @Schema()
 export class Event {
+
+
   @Prop()
   eventImage: string;
 

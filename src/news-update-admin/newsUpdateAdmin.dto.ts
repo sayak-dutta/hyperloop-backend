@@ -9,6 +9,14 @@ export class NewsCreateDto{
     @IsMongoId()
     @IsNotEmpty()
     description: string;
+
+    @IsMongoId()
+    @IsNotEmpty()
+    newsHeading: string;
+
+    @IsMongoId()
+    @IsNotEmpty()
+    newsDate: string;
 }
 
 export class NewsUpdateDTO extends PartialType(NewsCreateDto) {}
