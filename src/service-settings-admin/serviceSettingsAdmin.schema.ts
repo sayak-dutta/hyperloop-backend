@@ -13,7 +13,6 @@ export class ServiceSettingsAdmin {
 
   @Prop()
   serviceDescription: string;
-
 }
 
 export const ServiceSettingsAdminSchema =

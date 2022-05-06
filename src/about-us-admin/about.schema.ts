@@ -18,6 +18,12 @@ export class About {
 
   @Prop()
   bannerImage: string;
+
+  @Prop()
+  userCount: number;
+
+  @Prop()
+  promoVideo: string;
 }
 
 export const AboutSchema = SchemaFactory.createForClass(About);

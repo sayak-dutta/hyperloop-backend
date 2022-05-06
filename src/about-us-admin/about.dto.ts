@@ -14,6 +14,11 @@ export class AboutCreateDto {
   @IsNotEmpty()
   bannerImage: string;
 
+  @IsNumber()
+  userCount: number;
+
+  @IsString()
+  promoVideo: string;
 }
 
 export class AboutUpdateDTO extends PartialType(AboutCreateDto) {}
