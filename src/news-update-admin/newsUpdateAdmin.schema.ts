@@ -3,7 +3,6 @@ import { Document, SchemaTypes } from 'mongoose';
 import { Board } from 'src/board/board.schema';
 import { User } from 'src/user/user.schema';
 
-
 export type NewsDocument = News & Document;
 
 @Schema()

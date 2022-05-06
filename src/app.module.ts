@@ -21,6 +21,7 @@ import SiteContactModule from './site-contact-admin/siteContact.module';
 import { MotivatorWalletModule } from './motivatorWallet/motivatorWallet.module';
 import SupportFaqModule from './support-faq-admin/supportFaq.module';
 import BannerModule from './banner/banner.module';
+import PrivacyModule from './privacy/privacy.module';
 
 @Module({
   imports: [
@@ -69,6 +70,7 @@ import BannerModule from './banner/banner.module';
     MotivatorWalletModule,
     SupportFaqModule,
     BannerModule,
+    PrivacyModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { PrivacyController, PrivacyPolicyController } from './privacy.controller';
-import { Privacy,PrivacySchema } from './privacy.schema';
+import { PrivacyController, PrivacyControllers } from './privacy.controller';
+import { Privacy, PrivacySchema } from './privacy.schema';
 import { PrivacyService } from './privacy.service';
 
 @Module({
@@ -14,7 +14,7 @@ import { PrivacyService } from './privacy.service';
     ]),
   ],
   providers: [PrivacyService],
-  controllers: [PrivacyController, PrivacyPolicyController],
+  controllers: [PrivacyController, PrivacyControllers],
   exports: [PrivacyService],
 })
 export default class PrivacyModule {}

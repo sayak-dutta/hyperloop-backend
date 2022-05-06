@@ -55,16 +55,16 @@ export class PrivacyController {
   }
 }
 
-@Controller('privacy_policy')
-export class PrivacyPolicyController {
-  constructor(private readonly privacyService: PrivacyService) {}
+@Controller('privacy-all')
+export class PrivacyControllers {
+  constructor(private readonly PrivacyService: PrivacyService) {}
 
   @Get()
   async findAll() {
-    const privacy_policy = await this.privacyService.findAll();
-    if (!privacy_policy) {
+    const privacy = await this.PrivacyService.findAll();
+    if (!privacy) {
       throw new NotFoundException();
     }
-    return privacy_policy;
+    return privacy;
   }
 }
