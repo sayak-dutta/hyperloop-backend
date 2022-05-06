@@ -1,22 +1,18 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { IsMongoId, IsNotEmpty } from 'class-validator';
 
-export class NewsCreateDto{
+export class NewsCreateDto {
+  @IsNotEmpty()
+  image: string;
 
-    @IsNotEmpty()
-    image: string;
+  @IsNotEmpty()
+  description: string;
 
- 
-    @IsNotEmpty()
-    description: string;
+  @IsNotEmpty()
+  newsHeading: string;
 
-
-    @IsNotEmpty()
-    newsHeading: string;
-
-
-    @IsNotEmpty()
-    newsDate: string;
+  @IsNotEmpty()
+  newsDate: string;
 }
 
 export class NewsUpdateDTO extends PartialType(NewsCreateDto) {}

@@ -11,8 +11,6 @@ export class BannerCreateDto {
   @IsNumber()
   @IsNotEmpty()
   type: number;
-
-
 }
 
 export class BannerUpdateDTO extends PartialType(BannerCreateDto) {}
