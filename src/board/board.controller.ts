@@ -81,8 +81,8 @@ export class BoardIdFilterController{
     constructor(private readonly boardService: BoardService){};
     @Post()
     async filterBoardById(@Body() boardDocument:any){
-        let boardId1 = await this.boardService.filterBoardWithId(boardDocument);
-        return boardId1;
+        let board = await this.boardService.filterBoardWithId(boardDocument);
+        return board;
     }
 }
 

@@ -6,7 +6,7 @@ import { Board } from "./board.schema";
 export class BoardCreateDTO {
    
     @IsNotEmpty()
-    boardNumber: string;
+    boardNo: string;
 
     @IsNumber()
     @IsNotEmpty()
