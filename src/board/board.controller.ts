@@ -65,3 +65,14 @@ export class BoardControllers{
         return boards;
     }
 }
+
+@Controller('filter-boards-by-boardtype')
+export class BoardTypeFilterController{
+    constructor(private readonly boardService: BoardService){};
+
+    @Post()
+    async filterBoardByType(@Body() boardDocument:any){
+        let boards = await this.boardService.filterBoardWithType(boardDocument);
+        return boards;
+    }
+}

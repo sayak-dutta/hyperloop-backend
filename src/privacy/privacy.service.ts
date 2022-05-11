@@ -1,10 +1,12 @@
-import { InjectModel } from '@nestjs/mongoose';
 import { Privacy, PrivacyDocument } from './privacy.schema';
 import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
+
 
 export class PrivacyService {
   constructor(
-    @InjectModel(Privacy.name) private privacyModel: Model<PrivacyDocument>,
+    @InjectModel(Privacy.name) 
+    private privacyModel: Model<PrivacyDocument>,
   ) {}
 
   async findOneById(id: string) {

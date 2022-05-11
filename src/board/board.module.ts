@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
-import { BoardController, BoardControllers } from "./board.controller";
+import { BoardController, BoardControllers,BoardTypeFilterController } from "./board.controller";
 import { Board, BoardSchema } from "./board.schema";
 import { BoardService } from "./board.service";
 
@@ -15,7 +15,7 @@ import { BoardService } from "./board.service";
         ])
     ],
     providers: [BoardService],
-    controllers: [BoardController, BoardControllers],
+    controllers: [BoardController, BoardControllers, BoardTypeFilterController],
     exports: [BoardService]
 })
 export class BoardModule {};

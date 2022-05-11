@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 
 
 export class BoardService {
+
     constructor(
         @InjectModel(Board.name) private boardModel:Model<BoardDocument>
     ){}
@@ -28,5 +29,11 @@ export class BoardService {
 
     async remove(id:string):Promise<any>{
         return this.boardModel.findByIdAndRemove(id).exec();
+    }
+
+    async filterBoardWithType(boardDocument: any): Promise<any>{
+        let boardType = boardDocument.boardType;
+        let boards = await this.boardModel.find({boardType: boardType}).lean().exec();
+        return boards;
     }
 }

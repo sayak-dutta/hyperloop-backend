@@ -14,10 +14,10 @@ export class AboutCreateDto {
   @IsNotEmpty()
   bannerImage: string;
 
-  @IsNumber()
+  @IsNotEmpty()
   userCount: number;
 
-  @IsString()
+  @IsNotEmpty()
   promoVideo: string;
 }
 
