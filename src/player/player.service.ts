@@ -16,7 +16,16 @@ export class PlayerService {
   }
 
   async create(playerDocument: any): Promise<any> {
-    return new this.playerModel(playerDocument).save();
+    let playerLevel = playerDocument.playerLevel;
+    if(playerLevel == 1){
+      return playerLevel;
+    }
+    else if( playerLevel == 2){
+      
+    }
+    let boardPlayerLevel = await this.playerModel.find({level: playerLevel}).lean().exec();
+    return boardPlayerLevel;
+    // return new this.playerModel(playerDocument).save();
   }
 
   async update(id: string, playerDocument: any): Promise<any> {
@@ -28,4 +37,12 @@ export class PlayerService {
   async remove(id: string) {
     return this.playerModel.findByIdAndDelete(id);
   }
+
+//   async createPlayerLevel(playerDocument: any): Promise<any>{
+//     let playerLevel = playerDocument.playerLevel;
+//     let boardPlayerLevel = await this.playerModel.find({level: playerLevel}).lean().exec();
+//     return boardPlayerLevel;
+//   }
+// }
+
 }

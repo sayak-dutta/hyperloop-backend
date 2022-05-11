@@ -5,7 +5,7 @@ export type BoardDocument = Board & Document;
 @Schema()
 export class Board{
     @Prop({})
-    boardNo: number;
+    boardNo: string;
 
     @Prop({})
     boardPlayerCount: number;

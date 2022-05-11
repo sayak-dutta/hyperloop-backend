@@ -68,3 +68,15 @@ export class PlayersController {
     return players;
   }
 }
+
+@Controller('filter-player-level')
+export class PlayerLevelFilterController{
+    constructor(private readonly playerService: PlayerService){};
+    @Post()
+    async filterPlayerLevelById(@Body() playerDocument:any){
+        let boardPlayerLevel = await this.playerService.create(playerDocument);
+        return boardPlayerLevel;
+    }
+}
+
+

@@ -4,9 +4,9 @@ import { Board } from "./board.schema";
 
 
 export class BoardCreateDTO {
-    @IsNumber()
+   
     @IsNotEmpty()
-    boardNumber: number;
+    boardNumber: string;
 
     @IsNumber()
     @IsNotEmpty()

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { PlayerController, PlayersController } from './player.controller';
+import { PlayerController, PlayersController,PlayerLevelFilterController } from './player.controller';
 import { Player, PlayerSchema } from './player.schema';
 import { PlayerService } from './player.service';
 
@@ -14,7 +14,7 @@ import { PlayerService } from './player.service';
     ]),
   ],
   providers: [PlayerService],
-  controllers: [PlayerController, PlayersController],
+  controllers: [PlayerController, PlayersController,PlayerLevelFilterController],
   exports: [PlayerService],
 })
 export default class PlayerModule {}

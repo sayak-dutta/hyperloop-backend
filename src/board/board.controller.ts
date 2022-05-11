@@ -69,10 +69,20 @@ export class BoardControllers{
 @Controller('filter-boards-by-boardtype')
 export class BoardTypeFilterController{
     constructor(private readonly boardService: BoardService){};
-
     @Post()
     async filterBoardByType(@Body() boardDocument:any){
         let boards = await this.boardService.filterBoardWithType(boardDocument);
         return boards;
     }
 }
+
+@Controller('filter-boards-by-boardid')
+export class BoardIdFilterController{
+    constructor(private readonly boardService: BoardService){};
+    @Post()
+    async filterBoardById(@Body() boardDocument:any){
+        let boardId1 = await this.boardService.filterBoardWithId(boardDocument);
+        return boardId1;
+    }
+}
+
