@@ -8,6 +8,7 @@ import { PlayerService } from './player.service';
 import { Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { PlayerCreateDto, PlayerUpdateDTO } from './player.dto';
 
+
 @Controller('player')
 export class PlayerController {
   constructor(private readonly playerService: PlayerService) {}
@@ -69,14 +70,11 @@ export class PlayersController {
   }
 }
 
-@Controller('filter-player-level')
+@Controller('filter-player-by-level')
 export class PlayerLevelFilterController{
     constructor(private readonly playerService: PlayerService){};
     @Post()
-    async filterPlayerLevelById(@Body() playerDocument:any){
-        let boardPlayerLevel = await this.playerService.create(playerDocument);
-        return boardPlayerLevel;
+    async filterPlayerByLevel(@Body() playerDocument:any){
+       
     }
 }
-
-

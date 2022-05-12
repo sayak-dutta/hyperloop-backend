@@ -34,7 +34,7 @@ export class BoardService {
         let boardType = boardDocument.boardType;
         let boardName = boardDocument.boardName;
         let boards = await this.boardModel.find(
-            {boardType: boardType},boardDocument,  {boardName: boardName}).lean().exec();
+            {boardType: boardType , boardName: boardName}).lean().exec();
         return boards;
     }
 

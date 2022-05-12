@@ -1,6 +1,7 @@
 import { InjectModel } from '@nestjs/mongoose';
 import { Player, PlayerDocument } from './player.schema';
 import { Model } from 'mongoose';
+import { BoardDocument } from 'src/board/board.schema';
 
 export class PlayerService {
   constructor(
@@ -16,17 +17,19 @@ export class PlayerService {
   }
 
   async create(playerDocument: any): Promise<any> {
-    let playerLevel = playerDocument.playerLevel;
-    if(playerLevel == 1){
-      return playerLevel;
-    }
-    else if( playerLevel == 2){
-      
-    }
-    let boardPlayerLevel = await this.playerModel.find({level: playerLevel}).lean().exec();
-    return boardPlayerLevel;
-    // return new this.playerModel(playerDocument).save();
+    playerDocument.level = 4;
+
+     return new this.playerModel(playerDocument).save();
+
   }
+
+  async filterPlayerLevel(playerDocument: any, BoardDocument:any): Promise<any>{
+    // let boardNo = BoardDocument.boardNo;
+    let level = playerDocument.level ;
+     console.log(level);
+    let player = await this.playerModel.find({level: level}).lean().exec();
+     return player;
+ }
 
   async update(id: string, playerDocument: any): Promise<any> {
     return this.playerModel.findByIdAndUpdate(id, playerDocument, {
@@ -37,12 +40,4 @@ export class PlayerService {
   async remove(id: string) {
     return this.playerModel.findByIdAndDelete(id);
   }
-
-//   async createPlayerLevel(playerDocument: any): Promise<any>{
-//     let playerLevel = playerDocument.playerLevel;
-//     let boardPlayerLevel = await this.playerModel.find({level: playerLevel}).lean().exec();
-//     return boardPlayerLevel;
-//   }
-// }
-
 }
