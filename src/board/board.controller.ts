@@ -18,16 +18,17 @@ export class BoardController{
     @Post()
     async create(@Body() boardDocument: BoardCreateDTO){
         try{
-            const board = await this.boardService.create(boardDocument);
-            return board.toJSON();
+            const boardNo = await this.boardService.create(boardDocument);
+            return boardNo;
         }catch(e){
             if(e.code === 11000){
                 throw new BadRequestException();
             }
             throw e;
         }
-    }
 
+    }
+   
     @Patch(':id')
     async update(
         @Param() { id },

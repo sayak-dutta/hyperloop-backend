@@ -18,20 +18,23 @@ export class BoardService {
     }
 
     async create(boardDocument:any):Promise<any>{
-        // let currentDate= new Date();
-        // boardDocument. = "BRZP"+`${currentDate.getDate()}${currentDate.getMonth()+1}${currentDate.getFullYear()}${currentDate.getHours()}${currentDate.getMinutes()}${currentDate.getSeconds()}`;
+        const currentDate= new Date();
+        boardDocument.boardNo =  "BRZP"+`${currentDate.getDate()}${currentDate.getMonth()+1}${currentDate.getFullYear()}${currentDate.getHours()}${currentDate.getMinutes()}${currentDate.getSeconds()}`;
         return new this.boardModel(boardDocument).save();
     }
 
     async filterBoardWithId(boardDocument: any): Promise<any>{
-       let boardNo = boardDocument.boardNumber ;
+       let boardNo = boardDocument.boardNo ;
+    //    console.log(boardNo);
        let board = await this.boardModel.find({boardNo: boardNo}).lean().exec();
         return board;
     }
 
     async filterBoardWithType(boardDocument: any): Promise<any>{
         let boardType = boardDocument.boardType;
-        let boards = await this.boardModel.find({boardType: boardType}).lean().exec();
+        let boardName = boardDocument.boardName;
+        let boards = await this.boardModel.find(
+            {boardType: boardType},boardDocument,  {boardName: boardName}).lean().exec();
         return boards;
     }
 

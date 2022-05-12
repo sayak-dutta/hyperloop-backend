@@ -5,15 +5,15 @@ import { Board } from "./board.schema";
 
 export class BoardCreateDTO {
    
-    @IsNotEmpty()
+    // @IsNotEmpty()
     boardNo: string;
 
-    @IsNumber()
-    @IsNotEmpty()
+    // @IsNumber()
+    // @IsNotEmpty()
     boardPlayerCount: number;
 
-    @IsString()
-    @IsNotEmpty()
+    // @IsString()
+    // @IsNotEmpty()
     boardName: string;
 
     @IsString()
