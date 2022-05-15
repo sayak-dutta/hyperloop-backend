@@ -70,11 +70,15 @@ export class PlayersController {
   }
 }
 
-@Controller('filter-player-by-level')
+@Controller('filter-player-by-boardno')
 export class PlayerLevelFilterController{
     constructor(private readonly playerService: PlayerService){};
     @Post()
     async filterPlayerByLevel(@Body() playerDocument:any){
-       
+      const players = await this.playerService.filterPlayerLevel(playerDocument);
+      if (!players) {
+        throw new NotFoundException();
+      }
+      return players;
     }
 }

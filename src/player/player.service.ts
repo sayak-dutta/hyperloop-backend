@@ -9,11 +9,14 @@ export class PlayerService {
   ) {}
 
   async findOneById(id: string) {
-    return await this.playerModel.findById(id);
+    return await this.playerModel.findById(id).populate('parent').populate('user');
   }
 
   async findAll() {
-    return await this.playerModel.find().lean().exec();
+    return await this.playerModel.find().populate({path: 'parent', populate: {
+      path: 'user',
+      model: 'User'
+    }}).populate('user').lean().exec();
   }
 
   async create(playerDocument: any): Promise<any> {
@@ -21,12 +24,13 @@ export class PlayerService {
 
   }
 
-  async filterPlayerLevel(playerDocument: any, BoardDocument:any): Promise<any>{
-    // let boardNo = BoardDocument.boardNo;
-    let level = playerDocument.level ;
-     console.log(level);
-    let player = await this.playerModel.find({level: level}).lean().exec();
-     return player;
+  async filterPlayerLevel(playerDocument: any): Promise<any>{
+    // let level = playerDocument.level ;
+    let player = await this.playerModel.find({board: playerDocument.board}).populate({path: 'parent', populate: {
+      path: 'user',
+      model: 'User'
+    }}).populate('user').lean().exec();
+    return player;
  }
 
   async update(id: string, playerDocument: any): Promise<any> {
