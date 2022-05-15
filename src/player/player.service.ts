@@ -17,8 +17,6 @@ export class PlayerService {
   }
 
   async create(playerDocument: any): Promise<any> {
-    playerDocument.level = 4;
-
      return new this.playerModel(playerDocument).save();
 
   }
