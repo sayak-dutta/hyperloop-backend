@@ -1,11 +1,12 @@
 import { InjectModel } from '@nestjs/mongoose';
 import { Player, PlayerDocument } from './player.schema';
 import { Model } from 'mongoose';
-import { BoardDocument } from 'src/board/board.schema';
+import { BoardDocument, Board } from 'src/board/board.schema';
+import { Mode } from 'fs';
 
 export class PlayerService {
   constructor(
-    @InjectModel(Player.name) private playerModel: Model<PlayerDocument>,
+    @InjectModel(Player.name) private playerModel: Model<PlayerDocument>, @InjectModel(Board.name) private boardModel: Model<BoardDocument>
   ) {}
 
   async findOneById(id: string) {
@@ -41,5 +42,13 @@ export class PlayerService {
 
   async remove(id: string) {
     return this.playerModel.findByIdAndDelete(id);
+  }
+
+
+  async addPlayerToBoard(playerDocument: any): Promise<any> {
+    playerDocument.playerNo = 15;
+    playerDocument.level = 4;
+
+    let playersList = this.playerModel.find({board: playerDocument.board}).lean().exec();
   }
 }
