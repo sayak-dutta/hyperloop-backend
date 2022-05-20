@@ -61,14 +61,21 @@ export class PlayerService {
     console.log(playerDocument)
     
     let playersList = await this.playerModel.find({board: playerDocument.board}).lean().exec();
-    for(let i=0; i<playersList.length; i++){
-      if(playersList[i].playerNo >= 8){
+
+    // If player list length is less than or equals to 14 that is board is not full then player is added and also refer count is all same
+
+    if(playersList.length <= 14){
+      for(let i=0; i<playersList.length; i++){
         playersList[i].playerNo = playersList[i].playerNo - 1;
         console.log(playersList[i]);
         await this.playerModel.findByIdAndUpdate(playersList[i]._id, playersList[i]);
       }
+      let new_player = new this.playerModel(playerDocument).save();
+      return new_player;
     }
-    let new_player = new this.playerModel(playerDocument).save();
-    return new_player;
+    // If board is full
+    else if(playersList.length == 15){
+
+    }
   }
 }
