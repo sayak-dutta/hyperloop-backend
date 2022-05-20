@@ -82,3 +82,31 @@ export class PlayerLevelFilterController{
       return players;
     }
 }
+
+
+@Controller('add-player-to-board')
+export class AddPlayertoBoardController{
+    constructor(private readonly playerService: PlayerService){};
+    @Post()
+    async addPlayerToBoard(@Body() playerDocument:any){
+      const players = await this.playerService.addPlayerToBoard(playerDocument);
+      if (!players) {
+        throw new NotFoundException();
+      }
+      return players;
+    }
+}
+
+
+@Controller('filter-player-by-userid')
+export class FilterPlayerByUserId{
+    constructor(private readonly playerService: PlayerService){};
+    @Post()
+    async filterPlayerToBoard(@Body() playerDocument:any){
+      const player = await this.playerService.filterPlayerByUserId(playerDocument);
+      if (!player) {
+        throw new NotFoundException();
+      }
+      return player;
+    }
+}

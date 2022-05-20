@@ -6,7 +6,8 @@ import { Mode } from 'fs';
 
 export class PlayerService {
   constructor(
-    @InjectModel(Player.name) private playerModel: Model<PlayerDocument>, @InjectModel(Board.name) private boardModel: Model<BoardDocument>
+    @InjectModel(Player.name) private playerModel: Model<PlayerDocument>,
+    @InjectModel(Board.name) private boardModel: Model<BoardDocument>
   ) {}
 
   async findOneById(id: string) {
@@ -25,8 +26,12 @@ export class PlayerService {
 
   }
 
+  async filterPlayerByUserId(playerDocument:any): Promise<any>{
+    let player = await (await this.playerModel.findOne({user: playerDocument.user_id})).populate('board')
+    return player;
+  }
+
   async filterPlayerLevel(playerDocument: any): Promise<any>{
-    // let level = playerDocument.level ;
     let player = await this.playerModel.find({board: playerDocument.board}).populate({path: 'parent', populate: {
       path: 'user',
       model: 'User'
@@ -44,11 +49,26 @@ export class PlayerService {
     return this.playerModel.findByIdAndDelete(id);
   }
 
-
   async addPlayerToBoard(playerDocument: any): Promise<any> {
+    let board_instance = await this.boardModel.findOne({boardNo: playerDocument.boardNo}).lean().exec()
+
     playerDocument.playerNo = 15;
     playerDocument.level = 4;
+    playerDocument.board = board_instance?._id;
+    playerDocument.referCount = 0;
 
-    let playersList = this.playerModel.find({board: playerDocument.board}).lean().exec();
+    delete playerDocument.boardNo;
+    console.log(playerDocument)
+    
+    let playersList = await this.playerModel.find({board: playerDocument.board}).lean().exec();
+    for(let i=0; i<playersList.length; i++){
+      if(playersList[i].playerNo >= 8){
+        playersList[i].playerNo = playersList[i].playerNo - 1;
+        console.log(playersList[i]);
+        await this.playerModel.findByIdAndUpdate(playersList[i]._id, playersList[i]);
+      }
+    }
+    let new_player = new this.playerModel(playerDocument).save();
+    return new_player;
   }
 }
