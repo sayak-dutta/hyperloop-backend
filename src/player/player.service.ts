@@ -127,6 +127,8 @@ export class PlayerService {
         console.log(playersList[i]);
         await this.playerModel.findByIdAndUpdate(playersList[i]._id, playersList[i]);
       }
+      let new_player = new this.playerModel(playerDocument).save();
+      return new_player;
     }
   }
 }
