@@ -89,6 +89,13 @@ export class PlayerService {
         boardName: 'Bronze',
         boardType: 'Player'
       });
+      let board3 = await this.boardService.create({
+        boardPlayerCount: 0,
+        boardName: 'Bronze',
+        boardType: 'Winner'
+      });
+      
+
       
       for(let i=0; i<playersList.length; i++){
         if(playersList[i].playerNo == 15 || playersList[i].playerNo == 14 || playersList[i].playerNo == 13 || playersList[i].playerNo == 12 || playersList[i].playerNo == 7 || playersList[i].playerNo == 6 || playersList[i].playerNo == 3){
@@ -123,6 +130,10 @@ export class PlayerService {
             playersList[i].playerNo = playersList[i].playerNo - 1;
             playersList[i].board = board2._id;
           }
+        }
+        else if(playersList[i].playerNo == 1){
+            playersList[i].playerNo = 15;
+            playersList[i].board = board3._id;
         }
         console.log(playersList[i]);
         await this.playerModel.findByIdAndUpdate(playersList[i]._id, playersList[i]);
