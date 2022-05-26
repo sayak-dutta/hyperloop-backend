@@ -70,6 +70,12 @@ export class PlayerService {
       }
       else{
         board_instance = await this.boardModel.findOne({boardNo: sponsor_player_instance.board}).lean().exec();
+
+        let board_instance_obj = JSON.parse(JSON.stringify(board_instance));
+
+        if(board_instance_obj.boardName != 'Bronze' && board_instance_obj.boardName != 'Player'){
+          board_instance = await this.boardModel.findOne({boardName:'Bronze', boardType:'Player'}).lean().exec();
+        }
       }
     }
     else{
