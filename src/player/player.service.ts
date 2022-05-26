@@ -22,10 +22,7 @@ export class PlayerService {
   }
 
   async findAll() {
-    return await this.playerModel.find().populate({path: 'parent', populate: {
-      path: 'user',
-      model: 'User'
-    }}).populate('user').lean().exec();
+    return await this.playerModel.find().populate('parent').populate('user').lean().exec();
   }
 
   async create(playerDocument: any): Promise<any> {
@@ -53,18 +50,44 @@ export class PlayerService {
   }
 
   async addPlayerToBoard(playerDocument: any): Promise<any> {
-    let board_instance = await this.boardModel.findOne({boardNo: playerDocument.boardNo}).lean().exec()
 
+    //Finding the sponsor
     let sponsor_instance = await this.sponsorModel.findOne({user:playerDocument.user}).lean().exec();
 
+    //Finding sponsor player from sponsor user
+    let sponsor_player_instance = await this.playerModel.findOne({user:sponsor_instance.sponsor}).populate('user').lean().exec();
+    
+
+    //Converting sponsor_player_instance document to object
+    let sponsor_player_instance_doc = JSON.parse(JSON.stringify(sponsor_player_instance));
+
+    let board_instance: any;
+    
+    if(sponsor_player_instance){
+      // Getting the board instance with reffered sponsor
+      if(sponsor_player_instance_doc?.user?.username == 'HYPERLOOP'){
+        board_instance = await this.boardModel.findOne({boardName:'Bronze', boardType:'Player'}).lean().exec();
+      }
+      else{
+        board_instance = await this.boardModel.findOne({boardNo: sponsor_player_instance.board}).lean().exec();
+      }
+    }
+    else{
+      // Getting the board instance with hyperloop sponsor
+      // board_instance = await this.boardModel.findOne({boardNo: playerDocument.boardNo}).lean().exec();
+
+      board_instance = await this.boardModel.findOne({boardName:'Bronze', boardType:'Player'}).lean().exec();
+    }
+    
+    console.log('This is the board instance', board_instance);
     playerDocument.parent = sponsor_instance.sponsor;
     playerDocument.playerNo = 15;
     playerDocument.level = 4;
     playerDocument.board = board_instance?._id;
     playerDocument.referCount = 0;
 
+    console.log('This is the final player instance', playerDocument);
     delete playerDocument.boardNo;
-    console.log(playerDocument)
     
     let playersList = await this.playerModel.find({board: playerDocument.board}).lean().exec();
 
@@ -100,6 +123,7 @@ export class PlayerService {
       
       for(let i=0; i<playersList.length; i++){
         if(playersList[i].playerNo == 15 || playersList[i].playerNo == 14 || playersList[i].playerNo == 13 || playersList[i].playerNo == 12 || playersList[i].playerNo == 7 || playersList[i].playerNo == 6 || playersList[i].playerNo == 3){
+
           // checking player belonging to left board
           if(playersList[i].playerNo == 15 || playersList[i].playerNo == 14 || playersList[i].playerNo == 13 || playersList[i].playerNo == 12){
             playersList[i].playerNo = playersList[i].playerNo - 8;
@@ -119,6 +143,7 @@ export class PlayerService {
         }
 
         else if(playersList[i].playerNo == 11 || playersList[i].playerNo == 10 || playersList[i].playerNo == 9 || playersList[i].playerNo == 8 || playersList[i].playerNo == 5 || playersList[i].playerNo == 4 || playersList[i].playerNo == 2){
+
           // checking player belonging to left or right board
           if(playersList[i].playerNo == 11 || playersList[i].playerNo == 10 || playersList[i].playerNo == 9 || playersList[i].playerNo == 8){
             playersList[i].playerNo = playersList[i].playerNo - 4;
