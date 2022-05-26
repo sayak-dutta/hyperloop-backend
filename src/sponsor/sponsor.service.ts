@@ -12,7 +12,7 @@ export class SponsorService {
   }
 
   async findAll() {
-    return await this.sponsorModel.find().lean().exec();
+    return await this.sponsorModel.find().populate('sponsor').populate('user').lean().exec();
   }
   async create(sponsorDocument: any): Promise<any> {
     return new this.sponsorModel(sponsorDocument).save();

@@ -23,7 +23,7 @@ export class Player {
   level: number;
 
   @Prop({
-    ref: Player.name,
+    ref: User.name,
     type: SchemaTypes.ObjectId,
   })
   parent: string;

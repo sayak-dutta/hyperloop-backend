@@ -3,6 +3,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Board, BoardSchema } from 'src/board/board.schema';
 import { BoardService } from 'src/board/board.service';
+import { Sponsor, SponsorSchema } from 'src/sponsor/sponsor.schema';
 import { PlayerController, PlayersController,PlayerLevelFilterController, AddPlayertoBoardController, FilterPlayerByUserId } from './player.controller';
 import { Player, PlayerSchema } from './player.schema';
 import { PlayerService } from './player.service';
@@ -17,6 +18,10 @@ import { PlayerService } from './player.service';
       {
         name: Board.name,
         schema: BoardSchema
+      },
+      {
+        name: Sponsor.name,
+        schema: SponsorSchema
       }
     ]),
   ],
