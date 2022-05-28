@@ -113,8 +113,12 @@ export class PlayerService {
             .exec();
           console.log(board_instance);
         }
+
+        console.log("Updating refer count here....");
         sponsor_player_instance.referCount = sponsor_player_instance.referCount + 1;
-        await this.sponsorModel.findByIdAndUpdate(sponsor_player_instance._id, sponsor_player_instance);
+        console.log(sponsor_player_instance);
+
+        await this.playerModel.findByIdAndUpdate(sponsor_player_instance._id, sponsor_player_instance);
       }
     } else {
       // Getting the board instance with hyperloop sponsor
