@@ -65,6 +65,8 @@ export class PlayerService {
     return this.playerModel.findByIdAndDelete(id);
   }
 
+
+
   async addPlayerToBoard(playerDocument: any): Promise<any> {
     //Finding the sponsor
     let sponsor_instance = await this.sponsorModel
@@ -117,7 +119,7 @@ export class PlayerService {
         console.log("Updating refer count here....");
         sponsor_player_instance.referCount = sponsor_player_instance.referCount + 1;
         console.log(sponsor_player_instance);
-
+        
         await this.playerModel.findByIdAndUpdate(sponsor_player_instance._id, sponsor_player_instance);
       }
     } else {
@@ -167,21 +169,195 @@ export class PlayerService {
 
     // If board is full
     else if (playersList.length == 15) {
-      let board1 = await this.boardService.create({
-        boardPlayerCount: 7,
-        boardName: 'Bronze',
-        boardType: 'Player',
-      });
-      let board2 = await this.boardService.create({
-        boardPlayerCount: 7,
-        boardName: 'Bronze',
-        boardType: 'Player',
-      });
-      let board3 = await this.boardService.create({
-        boardPlayerCount: 1,
-        boardName: 'Bronze',
-        boardType: 'Winner',
-      });
+      let board_instance = await this.boardModel.findOne({_id: playersList[0].board});
+      
+      let board1: any, board2: any, board3: any;
+      if(board_instance.boardName == 'Bronze' && board_instance.boardType == 'Player'){
+        board1 = await this.boardService.create({
+          boardPlayerCount: 7,
+          boardName: 'Bronze',
+          boardType: 'Player',
+        });
+        board2 = await this.boardService.create({
+          boardPlayerCount: 7,
+          boardName: 'Bronze',
+          boardType: 'Player',
+        });
+        board3 = await this.boardService.create({
+          boardPlayerCount: 1,
+          boardName: 'Bronze',
+          boardType: 'Winner',
+        });
+      }
+      else if(board_instance.boardName == 'Bronze' && board_instance.boardType == 'Winner'){
+        board1 = await this.boardService.create({
+          boardPlayerCount: 7,
+          boardName: 'Bronze',
+          boardType: 'Winner',
+        });
+        board2 = await this.boardService.create({
+          boardPlayerCount: 7,
+          boardName: 'Bronze',
+          boardType: 'Winner',
+        });
+        board3 = await this.boardService.create({
+          boardPlayerCount: 1,
+          boardName: 'Silver',
+          boardType: 'Player',
+        });
+      }
+      else if(board_instance.boardName == 'Silver' && board_instance.boardType == 'Player'){
+        board1 = await this.boardService.create({
+          boardPlayerCount: 7,
+          boardName: 'Silver',
+          boardType: 'Player',
+        });
+        board2 = await this.boardService.create({
+          boardPlayerCount: 7,
+          boardName: 'Silver',
+          boardType: 'Player',
+        });
+        board3 = await this.boardService.create({
+          boardPlayerCount: 1,
+          boardName: 'Silver',
+          boardType: 'Winner',
+        });
+      }
+      else if(board_instance.boardName == 'Silver' && board_instance.boardType == 'Winner'){
+        board1 = await this.boardService.create({
+          boardPlayerCount: 7,
+          boardName: 'Silver',
+          boardType: 'Winner',
+        });
+        board2 = await this.boardService.create({
+          boardPlayerCount: 7,
+          boardName: 'Silver',
+          boardType: 'Winner',
+        });
+        board3 = await this.boardService.create({
+          boardPlayerCount: 1,
+          boardName: 'Gold',
+          boardType: 'Player',
+        });
+      }
+      else if(board_instance.boardName == 'Gold' && board_instance.boardType == 'Player'){
+        board1 = await this.boardService.create({
+          boardPlayerCount: 7,
+          boardName: 'Gold',
+          boardType: 'Player',
+        });
+        board2 = await this.boardService.create({
+          boardPlayerCount: 7,
+          boardName: 'Gold',
+          boardType: 'Player',
+        });
+        board3 = await this.boardService.create({
+          boardPlayerCount: 1,
+          boardName: 'Gold',
+          boardType: 'Winner',
+        });
+      }
+      else if(board_instance.boardName == 'Gold' && board_instance.boardType == 'Winner'){
+        board1 = await this.boardService.create({
+          boardPlayerCount: 7,
+          boardName: 'Gold',
+          boardType: 'Winner',
+        });
+        board2 = await this.boardService.create({
+          boardPlayerCount: 7,
+          boardName: 'Gold',
+          boardType: 'Winner',
+        });
+        board3 = await this.boardService.create({
+          boardPlayerCount: 1,
+          boardName: 'Diamond',
+          boardType: 'Player',
+        });
+      }
+      else if(board_instance.boardName == 'Diamond' && board_instance.boardType == 'Player'){
+        board1 = await this.boardService.create({
+          boardPlayerCount: 7,
+          boardName: 'Diamond',
+          boardType: 'Player',
+        });
+        board2 = await this.boardService.create({
+          boardPlayerCount: 7,
+          boardName: 'Diamond',
+          boardType: 'Player',
+        });
+        board3 = await this.boardService.create({
+          boardPlayerCount: 1,
+          boardName: 'Diamond',
+          boardType: 'Winner',
+        });
+      }
+      else if(board_instance.boardName == 'Diamond' && board_instance.boardType == 'Winner'){
+        board1 = await this.boardService.create({
+          boardPlayerCount: 7,
+          boardName: 'Diamond',
+          boardType: 'Winner',
+        });
+        board2 = await this.boardService.create({
+          boardPlayerCount: 7,
+          boardName: 'Diamond',
+          boardType: 'Winner',
+        });
+        board3 = await this.boardService.create({
+          boardPlayerCount: 1,
+          boardName: 'Black Diamond',
+          boardType: 'Player',
+        });
+      }
+      else if(board_instance.boardName == 'Black Diamond' && board_instance.boardType == 'Player'){
+        board1 = await this.boardService.create({
+          boardPlayerCount: 7,
+          boardName: 'Black Diamond',
+          boardType: 'Player',
+        });
+        board2 = await this.boardService.create({
+          boardPlayerCount: 7,
+          boardName: 'Black Diamond',
+          boardType: 'Player',
+        });
+        board3 = await this.boardService.create({
+          boardPlayerCount: 1,
+          boardName: 'Black Diamond',
+          boardType: 'Winner',
+        });
+      }
+      else if(board_instance.boardName == 'Black Diamond' && board_instance.boardType == 'Winner'){
+        board1 = await this.boardService.create({
+          boardPlayerCount: 7,
+          boardName: 'Black Diamond',
+          boardType: 'Player',
+        });
+        board2 = await this.boardService.create({
+          boardPlayerCount: 7,
+          boardName: 'Black Diamond',
+          boardType: 'Player',
+        });
+        board3 = await this.boardService.create({
+          boardPlayerCount: 1,
+          boardName: 'Bronze',
+          boardType: 'Winner',
+        });
+      }
+
+      // let board1 = await this.boardService.create({
+      //   boardPlayerCount: 7,
+      //   boardName: 'Bronze',
+      //   boardType: 'Player',
+      // });
+      // let board2 = await this.boardService.create({
+      //   boardPlayerCount: 7,
+      //   boardName: 'Bronze',
+      //   boardType: 'Player',
+      // });
+      // let board3 = await this.boardService.create({
+      //   boardPlayerCount: 1,
+      //   boardName: 'Bronze',
+      //   boardType: 'Winner',
+      // });
 
       for (let i = 0; i < playersList.length; i++) {
         if (
