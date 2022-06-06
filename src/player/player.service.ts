@@ -148,24 +148,55 @@ export class PlayerService {
       .exec();
 
     // If player list length is less than or equals to 14 that is board is not full then player is added and also refer count is all same
-
+    let level4_full = false;
     if (playersList.length <= 14) {
-
-      // if(Object.keys(obj).some(key => obj[key] === "Bob"))
-
+      if(playersList.some(player => player.playerNo === 8)){
+        level4_full = true;
+      }
       for (let i = 0; i < playersList.length; i++) {
-        if(playersList[i].playerNo == 15 || playersList[i].playerNo == 14 || playersList[i].playerNo == 13 || playersList[i].playerNo == 12 || playersList[i].playerNo == 10 || playersList[i].playerNo == 11 || playersList[i].playerNo == 9){
-          playersList[i].playerNo = playersList[i].playerNo - 1;
-          console.log(playersList[i]);
-          await this.playerModel.findByIdAndUpdate(
-            playersList[i]._id,
-            playersList[i],
-          );
+        if(level4_full){
+            playersList[i].playerNo = playersList[i].playerNo - 1;
+
+            if(playersList[i].playerNo == 1){
+              playersList[i].level = 1;
+            }
+            if(playersList[i].playerNo == 3 || playersList[i].playerNo == 2){
+              playersList[i].level = 2;
+            }
+            else if(playersList[i].playerNo == 7 || playersList[i].playerNo == 6 || playersList[i].playerNo == 5 || playersList[i].playerNo == 4){
+              playersList[i].level = 3;
+            }
+            else if(playersList[i].playerNo == 15 || playersList[i].playerNo == 14 || playersList[i].playerNo == 13 || playersList[i].playerNo == 12 || playersList[i].playerNo == 11 || playersList[i].playerNo == 10 ||playersList[i].playerNo == 9 || playersList[i].playerNo == 8){
+              playersList[i].level = 4;
+            }
+            
+            console.log(playersList[i]);
+            await this.playerModel.findByIdAndUpdate(
+              playersList[i]._id,
+              playersList[i],
+            );
+        }
+        else{
+          if(playersList[i].playerNo == 15 || 
+            playersList[i].playerNo == 14 || 
+            playersList[i].playerNo == 13 ||
+            playersList[i].playerNo == 12 ||
+            playersList[i].playerNo == 11 ||
+            playersList[i].playerNo == 10 ||
+            playersList[i].playerNo == 9 
+          ){          
+            playersList[i].playerNo = playersList[i].playerNo - 1;
+            console.log(playersList[i]);
+            await this.playerModel.findByIdAndUpdate(
+              playersList[i]._id,
+              playersList[i],
+            );
+          }
         }
       }
       let new_player = new this.playerModel(playerDocument).save();
       return new_player;
-    }
+    } 
 
     // If board is full
     else if (playersList.length == 15) {
